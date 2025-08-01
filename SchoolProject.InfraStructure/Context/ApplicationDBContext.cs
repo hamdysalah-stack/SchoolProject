@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Entities.Idenitiy;
 using System.Reflection;
 
 namespace SchoolProject.InfraStructure.Data
