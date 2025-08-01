@@ -1,5 +1,4 @@
 
-using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -8,6 +7,7 @@ using SchoolProject.Core.MiddleWareHandler;
 using SchoolProject.InfraStructure;
 using SchoolProject.InfraStructure.Data;
 using SchoolProject.Services;
+using System.Globalization;
 
 namespace SchoolProject.Api
 {
@@ -21,7 +21,7 @@ namespace SchoolProject.Api
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            // connection To SQl Server 
+            // connection To SQl Server  in Services Registeration in InfraStructure Project
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("dbcontext"));
@@ -29,7 +29,8 @@ namespace SchoolProject.Api
             #region dependancey Injection
             builder.Services.AddInfraStructureDependencies()
                           .AddServicesDependencies()
-                          .AddCoreDependencies();
+                          .AddCoreDependencies()
+                          .AddServicesRegisteragion();
 
             #endregion
 
@@ -58,6 +59,22 @@ namespace SchoolProject.Api
             #endregion
 
 
+            #region CORS
+            var Cors = "_cors";
+            builder.Services.AddCors(Options =>
+
+            {
+                Options.AddPolicy(name: Cors,
+                policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
+            #endregion
+
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -76,6 +93,7 @@ namespace SchoolProject.Api
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
+            app.UseCors(Cors);
 
             app.UseAuthorization();
 
