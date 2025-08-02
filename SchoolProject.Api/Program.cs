@@ -30,7 +30,7 @@ namespace SchoolProject.Api
             builder.Services.AddInfraStructureDependencies()
                           .AddServicesDependencies()
                           .AddCoreDependencies()
-                          .AddServicesRegisteragion();
+.AddServicesRegisteragion(builder.Configuration);
 
             #endregion
 
