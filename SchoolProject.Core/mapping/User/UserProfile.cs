@@ -8,6 +8,10 @@ namespace SchoolProject.Core.mapping.Usermappng
         public UserProfile()
         {
             CreateUserCommandMapping();
+            GetUserlistMapping();
+            GetUSerbyidMApping();
+            DeleteUserCommandMapping();
+            UpdateUserCommandMapping();
 
         }
     }

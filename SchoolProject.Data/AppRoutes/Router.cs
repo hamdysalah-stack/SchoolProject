@@ -32,6 +32,13 @@
         {
             public const string Prefix = Rule + "User";
             public const string Create = Prefix + "/Create";
+            public const string Paginated = Prefix + "/Paginated";
+            public const string Getyid = Prefix + SignleRoute;
+            public const string Edit = Prefix + "/Edit";
+            public const string Delete = Prefix + "/{id}";
+            public const string ChangePassword = Prefix + "/ChangePassword";
+
+
         }
 
     }
