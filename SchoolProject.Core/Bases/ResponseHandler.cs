@@ -33,6 +33,19 @@ namespace SchoolProject.Core.Bases
             };
         }
 
+        public Response<T> Login<T>(T entity, object Meta = null)
+        {
+            return new Response<T>()
+            {
+                Data = entity,
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Succeeded = true,
+                Message = " login Successfully",
+                Meta = Meta
+            };
+        }
+
+
 
         public Response<T> Change<T>(object Meta = null)
         {

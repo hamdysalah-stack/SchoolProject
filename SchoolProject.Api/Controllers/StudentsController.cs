@@ -22,6 +22,8 @@ namespace SchoolProject.Api.Controllers
             return NewResult(Oresult);
 
         }
+
+
         [HttpGet(Router.StudentRouting.Paginated)]
         public async Task<IActionResult> PaginatedStudents([FromQuery] GetStudentPaginatedListQuery listQuery)
         {

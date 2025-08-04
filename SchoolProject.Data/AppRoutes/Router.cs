@@ -40,6 +40,15 @@
 
 
         }
+        public static class AuthenticationRouting
+
+        {
+            public const string Prefix = Rule + "Authentication";
+            public const string SignIn = Prefix + "/SignIn";
+
+
+
+        }
 
     }
 }
