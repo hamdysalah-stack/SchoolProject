@@ -21,6 +21,9 @@ namespace SchoolProject.InfraStructure.Data
         }
 
         public DbSet<Users> Users { get; set; }
+
+        public DbSet<UserRefreshToken> userRefreshTokens { get; set; }
+
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subjects> Subjects { get; set; }

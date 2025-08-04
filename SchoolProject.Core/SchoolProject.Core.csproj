@@ -22,14 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Authentication\Queries\Handlers\" />
+    <Folder Include="Features\Authentication\Queries\models\" />
+    <Folder Include="Features\Authentication\Queries\Response\" />
     <Folder Include="Features\Departments\Commants\Handlers\" />
     <Folder Include="Features\Departments\Commants\Models\" />
     <Folder Include="Features\Departments\Commants\validations\" />
-    <Folder Include="Features\User\Queiers\Handlers\" />
-    <Folder Include="Features\User\Queiers\Models\" />
-    <Folder Include="Features\User\Queiers\Response\" />
     <Folder Include="mapping\Department\CommandMapping\" />
-    <Folder Include="mapping\User\QueryMapping\" />
   </ItemGroup>
 
 </Project>

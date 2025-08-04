@@ -28,7 +28,32 @@ namespace SchoolProject.Core.Bases
                 Data = entity,
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Added Successfully",
+                Message = "  Successfully",
+                Meta = Meta
+            };
+        }
+
+        public Response<T> Login<T>(T entity, object Meta = null)
+        {
+            return new Response<T>()
+            {
+                Data = entity,
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Succeeded = true,
+                Message = " login Successfully",
+                Meta = Meta
+            };
+        }
+
+
+
+        public Response<T> Change<T>(object Meta = null)
+        {
+            return new Response<T>()
+            {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Succeeded = true,
+                Message = " Change Password Successfully",
                 Meta = Meta
             };
         }
@@ -81,6 +106,18 @@ namespace SchoolProject.Core.Bases
                 StatusCode = System.Net.HttpStatusCode.Created,
                 Succeeded = true,
                 Message = "Created Successfully",
+                Meta = Meta
+            };
+        }
+
+        public Response<T> Updated<T>(T entity, object Meta = null)
+        {
+            return new Response<T>()
+            {
+                Data = entity,
+                StatusCode = System.Net.HttpStatusCode.Created,
+                Succeeded = true,
+                Message = "Updated Successfully",
                 Meta = Meta
             };
         }
