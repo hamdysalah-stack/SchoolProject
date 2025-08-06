@@ -12,7 +12,8 @@ using SchoolProject.Services.Interface;
 namespace SchoolProject.Core.Features.Authentication.Commants.Handlers
 {
     public class AuthenticationCommandHandler : ResponseHandler,
-                                             IRequestHandler<SignInCommand, Response<JwtAuhtResult>>
+                                             IRequestHandler<SignInCommand, Response<JwtAuhtResult>>,
+                                             IRequestHandler<RefreshTokenCommand, Response<JwtAuhtResult>>
     {
 
 
@@ -65,6 +66,32 @@ namespace SchoolProject.Core.Features.Authentication.Commants.Handlers
             // Generate token
             var token = await _authenticationServices.GetJWTTokenAsync(user);
             return Login<JwtAuhtResult>(token, "LoginSuccess");
+        }
+
+        public async Task<Response<JwtAuhtResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            var JwtToken = _authenticationServices.ReadJwtToken(request.AccessToken);
+
+
+            var userIdandExporedDate = await _authenticationServices.ValidateDetails(JwtToken, request.AccessToken, request.RefreshToken);
+
+
+            switch (userIdandExporedDate)
+            {
+                case ("AlgorithmsIsNotEqual", null): return Unauthorized<JwtAuhtResult>("AlgorithmsIsNotEqual");
+                case ("TokenisnotExpired", null): return Unauthorized<JwtAuhtResult>("TokenisnotExpired");
+                case ("RefreshTokenisnotfound", null): return Unauthorized<JwtAuhtResult>("RefreshTokenisnotfound");
+                case ("REfreshTokenisExpired", null): return Unauthorized<JwtAuhtResult>("REfreshTokenisExpired");
+            }
+
+            var (userId, expireDate) = userIdandExporedDate;
+            var User = await _userManager.FindByIdAsync(userId);
+            if (User == null)
+                return NotFound<JwtAuhtResult>("User is  Not found ");
+
+
+            var result = await _authenticationServices.GetRefreshToken(User, JwtToken, expireDate, request.RefreshToken);
+            return Success(result, "freshTokenSuccess");
         }
     }
 }
