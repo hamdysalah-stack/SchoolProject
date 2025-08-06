@@ -45,6 +45,12 @@
         {
             public const string Prefix = Rule + "Authentication";
             public const string SignIn = Prefix + "/SignIn";
+            public const string RefreshToken = Prefix + "/RefreshToken";
+
+            public const string ValidateToken = Prefix + "/ValidateToken";
+
+
+
 
 
 
